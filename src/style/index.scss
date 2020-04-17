@@ -1,5 +1,5 @@
-body{
-    min-width: 100vw;
-    min-height: 100vh;
-    background-color: red;
-}
+@import './reset';
+@import './font';
+@import './global';
+@import './colors';
+@import './variables';
