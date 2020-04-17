@@ -14,6 +14,10 @@ time, mark, audio, video {
 	@include reset-global;
 	font-family: 'Manrope', sans-serif;
 }
+a{
+	color: inherit;
+	text-decoration: none;
+}
 
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
