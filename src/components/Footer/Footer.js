@@ -8,12 +8,17 @@ import SocialMedia from '../SocialMedia/SocialMedia';
 import { PHONE_NUMBER, EMAIL_URL } from '../../constant/concatConstant';
 
 const Footer = () => (
-  <footer className="footer">
-    <div className="footer__contact">
-      <a href={`tel:${PHONE_NUMBER}`}>{PHONE_NUMBER}</a>
-      <a href={`mailto:${EMAIL_URL}`}>{EMAIL_URL}</a>
+  <footer id="footer">
+    <div className="container">
+      <div className="footer__contact">
+        <h2>Contact for develeper</h2>
+        <div className="footer_contact_links">
+          <a href={`tel:${PHONE_NUMBER}`}>{PHONE_NUMBER}</a>
+          <a href={`mailto:${EMAIL_URL}`}>{EMAIL_URL}</a>
+        </div>
+      </div>
+      <SocialMedia />
     </div>
-    <SocialMedia />
   </footer>
 );
 

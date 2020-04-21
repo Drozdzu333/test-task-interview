@@ -7,9 +7,11 @@ import './styles.scss';
 import SocialMedia from '../SocialMedia/SocialMedia';
 
 const Header = () => (
-  <header className="header">
-    <h1 className="header__h1">Create by Michał Rożdżyński</h1>
-    <SocialMedia />
+  <header id="header">
+    <div className="container">
+      <h1 className="header__h1">Create by Michał Rożdżyński</h1>
+      <SocialMedia />
+    </div>
   </header>
 );
 

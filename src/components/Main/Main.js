@@ -10,6 +10,7 @@ import getParsedData from '../../utility/getParsedData';
 import sortData from '../../utility/sortData';
 import getFilteredData from '../../utility/getFilteredData';
 import sortBtnsArray from '../../constant/sortBtnsArray';
+import PaginatedTable from '../PaginatedTable/PaginatedTable';
 
 const Main = () => {
   const [data, setData] = useState([]);
@@ -65,44 +66,11 @@ const Main = () => {
 
   return (
     <main>
-      <input type="text" value={search} onChange={handleChange} placeholder="Search" />
-      {sortBtnsArray.map((el) => <button onClick={() => handleOnClick(el.key)} type="button" id="sortLastMonth">{el.name}</button>)}
-      <ul>
-        {filteredData.map((el) => (
-          <li key={el.id}>
-            <p>
-              ID:
-              {' '}
-              {el.id}
-            </p>
-            <p>
-              Name:
-              {' '}
-              {el.name}
-            </p>
-            <p>
-              City:
-              {' '}
-              {el.city}
-            </p>
-            <p>
-              Sum:
-              {' '}
-              {el.incomesSum}
-            </p>
-            <p>
-              Last month:
-              {' '}
-              {el.lastMonthSum}
-            </p>
-            <p>
-              Average:
-              {' '}
-              {el.incomesAvg}
-            </p>
-          </li>
-        ))}
-      </ul>
+      <div className="container">
+        <input type="text" value={search} onChange={handleChange} placeholder="Search" />
+        {sortBtnsArray.map((el) => <button key={el.key} onClick={() => handleOnClick(el.key)} type="button" id="sortLastMonth">{el.name}</button>)}
+        <PaginatedTable data={filteredData} />
+      </div>
     </main>
   );
 };
