@@ -9,6 +9,7 @@ import fetchData from '../../utility/fetchData';
 import getParsedData from '../../utility/getParsedData';
 import sortData from '../../utility/sortData';
 import getFilteredData from '../../utility/getFilteredData';
+import sortBtnsArray from '../../constant/sortBtnsArray';
 
 const Main = () => {
   const [data, setData] = useState([]);
@@ -65,13 +66,7 @@ const Main = () => {
   return (
     <main>
       <input type="text" value={search} onChange={handleChange} placeholder="Search" />
-      {/* Zrobić arraykę z buttonami */}
-      <button onClick={() => handleOnClick('id')} type="button" id="sortId">id</button>
-      <button onClick={() => handleOnClick('name')} type="button" id="sortName">Name</button>
-      <button onClick={() => handleOnClick('city')} type="button" id="sortCity">City</button>
-      <button onClick={() => handleOnClick('incomesSum')} type="button" id="sortSum">Sum</button>
-      <button onClick={() => handleOnClick('incomesAvg')} type="button" id="sortAverage">Average</button>
-      <button onClick={() => handleOnClick('lastMonthSum')} type="button" id="sortLastMonth">Last month</button>
+      {sortBtnsArray.map((el) => <button onClick={() => handleOnClick(el.key)} type="button" id="sortLastMonth">{el.name}</button>)}
       <ul>
         {filteredData.map((el) => (
           <li key={el.id}>
