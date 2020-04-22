@@ -68,7 +68,7 @@ const Main = () => {
     <main>
       <div className="container">
         <input type="text" value={search} onChange={handleChange} placeholder="Search" />
-        {sortBtnsArray.map((el) => <button key={el.key} onClick={() => handleOnClick(el.key)} type="button" id="sortLastMonth">{el.name}</button>)}
+        {sortBtnsArray.map((el) => <button className={sortBy === el.key ? 'active' : null} key={el.key} onClick={() => handleOnClick(el.key)} type="button" id="sortLastMonth">{el.name}</button>)}
         <PaginatedTable data={filteredData} />
       </div>
     </main>

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import './styles.scss';
 
 const TableRow = ({ row }) => (
-  <li className="table_row" key={row.id}>
+  <li className="table_row" key={`table_row_${row.id}${row.name}`}>
     <p>
       ID:
       {' '}

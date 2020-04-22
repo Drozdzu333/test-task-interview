@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
@@ -25,12 +27,8 @@ const PaginatedTable = ({ data }) => {
   const handleClick = (e) => {
     setCurrentPage(e.target.id);
   };
-
-  const renderPageNumbers = pageNumbers.map((number) => (
-    <li key={number} id={number} onClick={handleClick} style={{ cursor: 'pointer' }}>
-      {number}
-    </li>
-  ));
+  // const renderPageNumbers =
+  // ));
 
   return (
     <div>
@@ -38,7 +36,7 @@ const PaginatedTable = ({ data }) => {
         {renderTodo}
       </ul>
       <ul id="page-numbers">
-        {renderPageNumbers}
+        {pageNumbers.map((number) => (<li className={currentPage === number ? 'active' : null} key={`page_number_${number}`} id={number} onClick={handleClick}>{number}</li>))}
       </ul>
     </div>
   );
