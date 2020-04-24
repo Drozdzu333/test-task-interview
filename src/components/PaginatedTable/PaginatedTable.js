@@ -24,19 +24,16 @@ const PaginatedTable = ({ data }) => {
   for (let i = 1; i <= Math.ceil(data.length / todoPerPage); i += 1) {
     pageNumbers.push(i);
   }
-  const handleClick = (e) => {
-    setCurrentPage(e.target.id);
+  const handleClick = (number) => {
+    setCurrentPage(number);
   };
-  // const renderPageNumbers =
-  // ));
-
   return (
     <div>
       <ul>
         {renderTodo}
       </ul>
       <ul id="page-numbers">
-        {pageNumbers.map((number) => (<li className={currentPage === number ? 'active' : null} key={`page_number_${number}`} id={number} onClick={handleClick}>{number}</li>))}
+        {pageNumbers.map((number) => (<li className={currentPage === number ? 'active' : null} key={`page_number_${number}`} id={number} onClick={() => handleClick(number)}>{number}</li>))}
       </ul>
     </div>
   );
