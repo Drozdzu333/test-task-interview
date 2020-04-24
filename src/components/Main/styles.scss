@@ -1,7 +1,12 @@
-main{
-    .container{
-        button.active{
-            background-color: blue;
-        }
+main.table {
+  .container {
+    .table__header {
+      .table__sortBtns {
+      button.active {
+        background-color: blue;
+      }
     }
+    }
+    
+  }
 }

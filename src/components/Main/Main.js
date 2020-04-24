@@ -11,6 +11,7 @@ import sortData from '../../utility/sortData';
 import getFilteredData from '../../utility/getFilteredData';
 import sortBtnsArray from '../../constant/sortBtnsArray';
 import PaginatedTable from '../PaginatedTable/PaginatedTable';
+import SearchBar from './SearchBar/SearchBar';
 
 const Main = () => {
   const [data, setData] = useState([]);
@@ -52,8 +53,8 @@ const Main = () => {
 
 
   // Search data function
-  const handleChange = (e) => {
-    setSearch(e.target.value);
+  const onChange = (a) => {
+    setSearch(a);
   };
   useEffect(() => {
     if (search === '') {
@@ -61,14 +62,18 @@ const Main = () => {
     } else {
       setFilteredData(getFilteredData(sortedData, search));
     }
-  }, [search, sortedData]);
+  }, [search, sortedData, data]);
 
 
   return (
-    <main>
+    <main className="table">
       <div className="container">
-        <input type="text" value={search} onChange={handleChange} placeholder="Search" />
-        {sortBtnsArray.map((el) => <button className={sortBy === el.key ? 'active' : null} key={el.key} onClick={() => handleOnClick(el.key)} type="button" id="sortLastMonth">{el.name}</button>)}
+        <div className="table__header">
+          <SearchBar onChange={(a) => onChange(a)} search={search} />
+          <div className="table__sortBtns">
+            {sortBtnsArray.map((el) => <button className={sortBy === el.key ? 'active' : null} key={el.key} onClick={() => handleOnClick(el.key)} type="button" id="sortLastMonth">{el.name}</button>)}
+          </div>
+        </div>
         <PaginatedTable data={filteredData} />
       </div>
     </main>
