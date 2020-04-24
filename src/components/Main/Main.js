@@ -3,19 +3,23 @@ import React, { useEffect, useState } from 'react';
 // styles
 import './styles.scss';
 
-// constant
+// constants
 import { DATA_URL, INCOMES_URL } from '../../constant/dataAddressConstant';
+
+// functions
 import fetchData from '../../utility/fetchData';
 import getParsedData from '../../utility/getParsedData';
 import sortData from '../../utility/sortData';
 import getFilteredData from '../../utility/getFilteredData';
-import sortBtnsArray from '../../constant/sortBtnsArray';
-import PaginatedTable from '../PaginatedTable/PaginatedTable';
-import SearchBar from './SearchBar/SearchBar';
+
+// components
+import PaginatedTable from '../PaginatedTable';
+import SearchBar from '../SearchBar';
+import SortButtons from '../SortButtons/SortButtons';
 
 const Main = () => {
   const [data, setData] = useState([]);
-  const [sortDirection, setSortDirection] = useState(!false);
+  const [sortDirection, setSortDirection] = useState(false);
   const [sortBy, setSortBy] = useState('name');
   const [sortedData, setSortedData] = useState([...data]);
   const [search, setSearch] = useState('');
@@ -39,9 +43,9 @@ const Main = () => {
   }, [data]);
 
   // Sort data function
-  const handleOnClick = (name) => {
-    if (sortBy !== name) {
-      setSortBy(name);
+  const onClick = (key) => {
+    if (sortBy !== key) {
+      setSortBy(key);
       setSortDirection(false);
     } else {
       setSortDirection(!sortDirection);
@@ -50,7 +54,6 @@ const Main = () => {
   useEffect(() => {
     setSortedData(sortData(data, sortBy, sortDirection));
   }, [sortBy, sortDirection, data]);
-
 
   // Search data function
   const onChange = (a) => {
@@ -64,15 +67,12 @@ const Main = () => {
     }
   }, [search, sortedData, data]);
 
-
   return (
     <main className="table">
       <div className="container">
         <div className="table__header">
           <SearchBar onChange={(a) => onChange(a)} search={search} />
-          <div className="table__sortBtns">
-            {sortBtnsArray.map((el) => <button className={sortBy === el.key ? 'active' : null} key={el.key} onClick={() => handleOnClick(el.key)} type="button" id="sortLastMonth">{el.name}</button>)}
-          </div>
+          <SortButtons sortBy={sortBy} onClick={(key) => onClick(key)} />
         </div>
         <PaginatedTable data={filteredData} />
       </div>

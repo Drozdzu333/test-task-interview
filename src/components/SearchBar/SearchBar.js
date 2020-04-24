@@ -4,17 +4,16 @@ import PropTypes from 'prop-types';
 // Styles
 import './styles.scss';
 
-const SearchBar = (props) => {
-  const { search } = props;
-  const onChange = (e) => {
-    props.onChange(e.target.value);
+const SearchBar = ({ search, onChange }) => {
+  const handleOnChange = (e) => {
+    onChange(e.target.value);
   };
   return (
     <div className="searchBar">
       <input
         type="text"
         value={search}
-        onChange={onChange}
+        onChange={handleOnChange}
         placeholder="Search"
       />
     </div>
@@ -22,13 +21,13 @@ const SearchBar = (props) => {
 };
 
 SearchBar.propTypes = {
-  handleOnChange: PropTypes.func,
   search: PropTypes.string,
+  onChange: PropTypes.func,
 };
 
-// SearchBar.defaultProps = {
-//   onChange: '',
-//   search: '',
-// };
+SearchBar.defaultProps = {
+  onChange: '',
+  search: '',
+};
 
 export default SearchBar;
