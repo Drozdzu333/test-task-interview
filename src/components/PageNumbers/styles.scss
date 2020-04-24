@@ -1,0 +1,19 @@
+@import '../../style/colors';
+
+#page-numbers{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 10px;
+    li{
+        padding: 5px;
+        color: $pagination-numbers-text-color;
+        border: 1px solid $pagination-numbers-border-color;
+        cursor: pointer;
+        &.active{
+            border: 1px solid $pagination-numbers-border-color-active;
+                color: $pagination-numbers-text-color-active;
+        }
+    }
+}

@@ -1,13 +1,16 @@
+@import '../../style/colors';
 #header {
-  background-color: #7de87d;
+  background-color: $header-background;
   .container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    font-family: "Roboto Slab", serif;
     h1 {
+      font-family: "Roboto Slab", serif;
       font-size: 3rem;
-      color: whitesmoke;
+      color: $header-text-color;
       text-align: center;
       padding: 10px;
     }

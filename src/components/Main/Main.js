@@ -3,18 +3,23 @@ import React, { useEffect, useState } from 'react';
 // styles
 import './styles.scss';
 
-// constant
+// constants
 import { DATA_URL, INCOMES_URL } from '../../constant/dataAddressConstant';
+
+// functions
 import fetchData from '../../utility/fetchData';
 import getParsedData from '../../utility/getParsedData';
 import sortData from '../../utility/sortData';
 import getFilteredData from '../../utility/getFilteredData';
-import sortBtnsArray from '../../constant/sortBtnsArray';
-import PaginatedTable from '../PaginatedTable/PaginatedTable';
+
+// components
+import PaginatedTable from '../PaginatedTable';
+import SearchBar from '../SearchBar';
+import SortButtons from '../SortButtons/SortButtons';
 
 const Main = () => {
   const [data, setData] = useState([]);
-  const [sortDirection, setSortDirection] = useState(!false);
+  const [sortDirection, setSortDirection] = useState(false);
   const [sortBy, setSortBy] = useState('name');
   const [sortedData, setSortedData] = useState([...data]);
   const [search, setSearch] = useState('');
@@ -38,9 +43,9 @@ const Main = () => {
   }, [data]);
 
   // Sort data function
-  const handleOnClick = (name) => {
-    if (sortBy !== name) {
-      setSortBy(name);
+  const onClick = (key) => {
+    if (sortBy !== key) {
+      setSortBy(key);
       setSortDirection(false);
     } else {
       setSortDirection(!sortDirection);
@@ -50,10 +55,9 @@ const Main = () => {
     setSortedData(sortData(data, sortBy, sortDirection));
   }, [sortBy, sortDirection, data]);
 
-
   // Search data function
-  const handleChange = (e) => {
-    setSearch(e.target.value);
+  const onChange = (a) => {
+    setSearch(a);
   };
   useEffect(() => {
     if (search === '') {
@@ -61,14 +65,15 @@ const Main = () => {
     } else {
       setFilteredData(getFilteredData(sortedData, search));
     }
-  }, [search, sortedData]);
-
+  }, [search, sortedData, data]);
 
   return (
-    <main>
+    <main className="table">
       <div className="container">
-        <input type="text" value={search} onChange={handleChange} placeholder="Search" />
-        {sortBtnsArray.map((el) => <button className={sortBy === el.key ? 'active' : null} key={el.key} onClick={() => handleOnClick(el.key)} type="button" id="sortLastMonth">{el.name}</button>)}
+        <div className="table__header">
+          <SearchBar onChange={(a) => onChange(a)} search={search} />
+          <SortButtons sortBy={sortBy} onClick={(key) => onClick(key)} />
+        </div>
         <PaginatedTable data={filteredData} />
       </div>
     </main>

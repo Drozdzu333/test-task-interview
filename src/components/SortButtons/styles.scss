@@ -1,0 +1,86 @@
+@import '../../style/colors';
+$height: 50px;
+.sortBtns {
+  display: flex;
+  margin: 10px;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  .button-outline {
+    display: flex;
+    position: relative;
+    button {
+      padding: 0;
+      margin: 0;
+      height: $height;
+      border: none;
+      &:focus{
+        border: none;
+      }
+    }
+    &::after,
+    &::before {
+      content: "";
+      display: inline-block;
+      width: 0;
+      height: 0;
+    }
+    &:first-of-type{
+        button{
+        padding-left: 20px;
+    }
+        &::before{
+            display: none;
+        }
+    }&:last-of-type{
+        button{
+        padding-right: 20px;
+    }
+        &::after{
+            display: none;
+        }
+    }
+    &::after {
+      position: absolute;
+      right: -19.5px;
+      border-top: $height solid $sort-btns-color1;
+      border-right: 20px solid transparent;
+    }
+    &::before {
+      border-bottom: $height solid $sort-btns-color1;
+      border-left: 20px solid transparent;
+    }
+    &:nth-of-type(2n) {
+      button {
+        background-color: $sort-btns-color1;
+      }
+    }
+    &:nth-of-type(2n-1) {
+      button {
+        background-color: $sort-btns-color2;
+      }
+      &::after {
+        border-top: $height solid $sort-btns-color2;
+        border-right: 20px solid transparent;
+      }
+      &::before {
+        border-bottom: $height solid $sort-btns-color2;
+        border-left: 20px solid transparent;
+      }
+    }
+
+
+    // Active
+    &.active {
+      button {
+        background-color: $sort-btns-active-color;
+      }
+      &::after {
+        border-top: $height solid $sort-btns-active-color;
+      }
+      &::before {
+        border-bottom: $height solid $sort-btns-active-color;
+      }
+    }
+  }
+}
