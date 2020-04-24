@@ -1,5 +1,29 @@
+@import '../../style/colors';
 .table_row{
     display: flex;
-    flex-direction: column;
-    
+    flex-direction: row;
+    flex-wrap: wrap;
+    .table_row_element{
+        flex: 1;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        h3,p{
+            text-align: center;
+            padding: 5px;
+        }
+        h3{
+            color: $row-text-h3-color;
+        }
+        p{
+            color: $row-text-p-color;
+        }
+    }
+    &:nth-child(2n){
+        background-color: $row-background-color1;
+    }
+    &:nth-child(2n-1){
+        background-color: $row-background-color2;
+    }
 }

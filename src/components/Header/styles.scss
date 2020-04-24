@@ -1,16 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Merriweather&family=Roboto+Slab&display=swap');
-
+@import '../../style/colors';
 #header {
-  background-color: #32936F;
+  background-color: $header-background;
   .container {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;font-family: 'Roboto Slab', serif;
+    align-items: center;
+    font-family: "Roboto Slab", serif;
     h1 {
-      font-family: 'Roboto Slab', serif;
+      font-family: "Roboto Slab", serif;
       font-size: 3rem;
-      color: whitesmoke;
+      color: $header-text-color;
       text-align: center;
       padding: 10px;
     }

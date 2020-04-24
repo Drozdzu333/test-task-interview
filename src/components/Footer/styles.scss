@@ -1,6 +1,8 @@
+@import '../../style/colors';
+
 #footer {
   height: 5rem;
-  background-color: #32936F;
+  background-color: $header-background;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -11,10 +13,11 @@
     align-items: center;
     h2 {
       font-size: 1.5rem;
-      color: whitesmoke;
+      color: $social-media-text-color;
     }
     .footer_contact_links {
         a{
+          color: $social-media-text-color;
             padding: 5px 10px;
         }
     }
