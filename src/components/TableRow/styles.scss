@@ -3,12 +3,13 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: space-evenly;
     .table_row_element{
-        flex: 1;
         padding: 20px;
         display: flex;
         flex-direction: column;
         align-items: center;
+        width: 200px;
         h3,p{
             text-align: center;
             padding: 5px;
