@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // constants
-import sortBtnsArray from '../../constant/sortBtnsArray';
+import sortBtnsArray from '../../constant/sortBtnsArrayConstant';
 
 // Styles
 import './styles.scss';

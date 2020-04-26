@@ -5,6 +5,7 @@ import './styles.scss';
 
 // constants
 import { DATA_URL, INCOMES_URL } from '../../constant/dataAddressConstant';
+import { itemPerPageDefault } from '../../constant/itemPerPageConstant';
 
 // functions
 import fetchData from '../../utility/fetchData';
@@ -17,6 +18,7 @@ import PaginatedTable from '../PaginatedTable';
 import SearchBar from '../SearchBar';
 import SortButtons from '../SortButtons/SortButtons';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
+import ItemPerPage from '../ItemPerPage/ItemPerPage';
 
 const Main = () => {
   const [data, setData] = useState([]);
@@ -25,6 +27,7 @@ const Main = () => {
   const [sortedData, setSortedData] = useState([...data]);
   const [search, setSearch] = useState('');
   const [filteredData, setFilteredData] = useState([]);
+  const [rowPerPage, setRowPerPage] = useState(itemPerPageDefault);
 
   // Fetch and set data object
   useEffect(() => {
@@ -56,6 +59,7 @@ const Main = () => {
     setSortedData(sortData(data, sortBy, sortDirection));
   }, [sortBy, sortDirection, data]);
 
+
   // Search data function
   const onChange = (a) => {
     setSearch(a);
@@ -74,8 +78,9 @@ const Main = () => {
           <div className="table__header">
             <SearchBar onChange={(a) => onChange(a)} search={search} />
             <SortButtons sortBy={sortBy} onClick={(key) => onClick(key)} />
+            <ItemPerPage rowPerPage={rowPerPage} setRows={(rows) => setRowPerPage(rows)} />
           </div>
-          <PaginatedTable data={filteredData} />
+          <PaginatedTable rowPerPage={rowPerPage} data={filteredData} />
         </div>
       )}
     </main>
