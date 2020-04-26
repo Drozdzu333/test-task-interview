@@ -1,0 +1,50 @@
+@import "../../style/colors";
+#loadingSpinnerWrapper {
+  min-height: 500px;
+  width: 100%;
+  .loadingSpinner__filter {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background-color: $background-filter-color;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .loadingSpinner__text-holder {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      span {
+        font-size: 3rem;
+        color: $spinner-text-color;
+        overflow: hidden;
+        white-space: no-wrap;
+        border-right: 0.15em solid $header-background;
+
+        // animation
+        animation: typing 3.5s steps(40, end) infinite,
+          blinking-cursor 0.5s step-end infinite;
+        @keyframes typing {
+          from {
+            width: 0;
+          }
+          to {
+            width: 100%;
+          }
+        }
+        @keyframes blinking-cursor {
+          from,
+          to {
+            border-color: transparent;
+          }
+          50% {
+            border-color: $header-background;
+          }
+        }
+      }
+    }
+  }
+}
