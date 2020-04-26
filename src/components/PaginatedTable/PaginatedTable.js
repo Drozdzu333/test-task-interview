@@ -18,7 +18,7 @@ const PaginatedTable = ({ rowPerPage, data }) => {
   // Change default for search
   useEffect(() => {
     setCurrentPage(1);
-  }, [data]);
+  }, [data, rowPerPage]);
 
   const renderTodo = currentTodo.map((el) => (
     <TableRow row={el} />
