@@ -1,2 +1,2 @@
-const ROWS_PER_PAGE = 15;
+const ROWS_PER_PAGE = 30;
 export default ROWS_PER_PAGE;
