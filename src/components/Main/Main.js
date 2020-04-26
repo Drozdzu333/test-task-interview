@@ -16,6 +16,7 @@ import getFilteredData from '../../utility/getFilteredData';
 import PaginatedTable from '../PaginatedTable';
 import SearchBar from '../SearchBar';
 import SortButtons from '../SortButtons/SortButtons';
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 
 const Main = () => {
   const [data, setData] = useState([]);
@@ -66,16 +67,17 @@ const Main = () => {
       setFilteredData(getFilteredData(sortedData, search));
     }
   }, [search, sortedData, data]);
-
   return (
     <main className="table">
-      <div className="container">
-        <div className="table__header">
-          <SearchBar onChange={(a) => onChange(a)} search={search} />
-          <SortButtons sortBy={sortBy} onClick={(key) => onClick(key)} />
+      {!data.length ? <LoadingSpinner /> : (
+        <div className="container">
+          <div className="table__header">
+            <SearchBar onChange={(a) => onChange(a)} search={search} />
+            <SortButtons sortBy={sortBy} onClick={(key) => onClick(key)} />
+          </div>
+          <PaginatedTable data={filteredData} />
         </div>
-        <PaginatedTable data={filteredData} />
-      </div>
+      )}
     </main>
   );
 };
