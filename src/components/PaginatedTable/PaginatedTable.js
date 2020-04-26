@@ -36,7 +36,13 @@ const PaginatedTable = ({ rowPerPage, data }) => {
       <ul>
         {renderTodo}
       </ul>
-      <PageNumbers pageNumbers={pageNumbers} currentPage={currentPage} onClick={(number) => handleClick(number)} />
+      <PageNumbers
+        pageNumbers={pageNumbers}
+        currentPage={currentPage}
+        onClick={
+        (number) => handleClick(number)
+}
+      />
     </div>
   );
 };
