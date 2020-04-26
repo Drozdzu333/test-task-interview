@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 // Components
@@ -14,6 +14,11 @@ const PaginatedTable = ({ rowPerPage, data }) => {
   const indexOfLastTodo = currentPage * todoPerPage;
   const indexOfFirstTodo = indexOfLastTodo - todoPerPage;
   const currentTodo = data.slice(indexOfFirstTodo, indexOfLastTodo);
+
+  // Change default for search
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [data]);
 
   const renderTodo = currentTodo.map((el) => (
     <TableRow row={el} />
@@ -31,7 +36,13 @@ const PaginatedTable = ({ rowPerPage, data }) => {
       <ul>
         {renderTodo}
       </ul>
-      <PageNumbers pageNumbers={pageNumbers} currentPage={currentPage} onClick={(number) => handleClick(number)} />
+      <PageNumbers
+        pageNumbers={pageNumbers}
+        currentPage={currentPage}
+        onClick={
+        (number) => handleClick(number)
+}
+      />
     </div>
   );
 };
