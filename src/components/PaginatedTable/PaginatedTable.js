@@ -4,14 +4,13 @@ import PropTypes from 'prop-types';
 // Components
 import TableRow from '../TableRow/TableRow';
 import PageNumbers from '../PageNumbers/PageNumbers';
-import ROWS_PER_PAGE from '../../constant/rowsPerPage';
 
 
-const PaginatedTable = ({ data }) => {
+const PaginatedTable = ({ rowPerPage, data }) => {
   const [currentPage, setCurrentPage] = useState(1);
 
   // Logic for displaying current todo
-  const todoPerPage = ROWS_PER_PAGE;
+  const todoPerPage = rowPerPage;
   const indexOfLastTodo = currentPage * todoPerPage;
   const indexOfFirstTodo = indexOfLastTodo - todoPerPage;
   const currentTodo = data.slice(indexOfFirstTodo, indexOfLastTodo);
@@ -39,10 +38,12 @@ const PaginatedTable = ({ data }) => {
 
 PaginatedTable.propTypes = {
   data: PropTypes.arrayOf([PropTypes.object]),
+  rowPerPage: PropTypes.number,
 };
 
 PaginatedTable.defaultProps = {
   data: [],
+  rowPerPage: 20,
 };
 
 export default PaginatedTable;
