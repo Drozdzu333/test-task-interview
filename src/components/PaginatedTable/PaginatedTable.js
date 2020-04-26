@@ -37,7 +37,8 @@ const PaginatedTable = ({ rowPerPage, data }) => {
 };
 
 PaginatedTable.propTypes = {
-  data: PropTypes.arrayOf([PropTypes.object]),
+  data: PropTypes.arrayOf([
+    PropTypes.objectOf([PropTypes.string, PropTypes.number, PropTypes.array])]),
   rowPerPage: PropTypes.number,
 };
 

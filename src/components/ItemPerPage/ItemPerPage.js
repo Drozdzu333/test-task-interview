@@ -15,14 +15,8 @@ const ItemPerPage = ({ rowPerPage, setRows }) => {
   return (
     <div className="ItemPerPageWrapper">
       <label htmlFor="perPage">Items per page</label>
-      <select onChange={onChange} id="perPage">
-        {itemPerPageArr.map((el) => (rowPerPage === el ? (
-          <option selected value={el}>
-            {el}
-          </option>
-        ) : (
-          <option value={el}>{el}</option>
-        )))}
+      <select value={rowPerPage} onChange={onChange} id="perPage">
+        {itemPerPageArr.map((el) => <option value={el}>{el}</option>)}
       </select>
     </div>
   );
