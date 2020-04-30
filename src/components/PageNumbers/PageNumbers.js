@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -18,7 +17,6 @@ const PageNumbers = ({ pageNumbers, currentPage, onClick }) => {
             key={`page_number_${number}`}
             id={number}
             onClick={() => handleOnClick(number)}
-
             role="presentation"
             aria-current={currentPage === number}
             aria-label={`Page ${number}`}
@@ -32,7 +30,7 @@ const PageNumbers = ({ pageNumbers, currentPage, onClick }) => {
 };
 
 PageNumbers.propTypes = {
-  pageNumbers: PropTypes.arrayOf(['numbers']),
+  pageNumbers: PropTypes.arrayOf(PropTypes.number),
   currentPage: PropTypes.number,
   onClick: PropTypes.func,
 };

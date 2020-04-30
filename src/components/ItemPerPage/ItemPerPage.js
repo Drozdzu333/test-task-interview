@@ -17,9 +17,12 @@ const ItemPerPage = ({ rowPerPage, setRows }) => {
         Items per page:
         {' '}
         <select value={rowPerPage} onChange={onChange} id="perPage">
-          {itemPerPageArr.map((el) => <option value={el}>{el}</option>)}
+          {itemPerPageArr.map((el) => (
+            <option key={`perPage${el}`} value={el}>
+              {el}
+            </option>
+          ))}
         </select>
-
       </label>
     </div>
   );

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import './styles.scss';
 
 const TableRow = ({ row }) => (
-  <li className="table_row" key={`table_row_${row.id}${row.name}`}>
+  <li className="table_row">
     <div className="table_row_element id">
       <h3>ID:</h3>
       <p>{row.id}</p>
@@ -34,11 +34,20 @@ const TableRow = ({ row }) => (
 );
 
 TableRow.propTypes = {
-  row: PropTypes.objectOf([
-    PropTypes.string,
-    PropTypes.number,
-    PropTypes.arrayOf(PropTypes.string),
-  ]),
+  row: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    city: PropTypes.string.isRequired,
+    lastMonthSum: PropTypes.number.isRequired,
+    incomesSum: PropTypes.number.isRequired,
+    incomesAvg: PropTypes.number.isRequired,
+    incomes: PropTypes.arrayOf(
+      PropTypes.shape({
+        value: PropTypes.string,
+        date: PropTypes.date,
+      }),
+    ),
+  }),
 };
 
 TableRow.defaultProps = {

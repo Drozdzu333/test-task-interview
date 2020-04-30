@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import TableRow from '../TableRow/TableRow';
 import PageNumbers from '../PageNumbers/PageNumbers';
 
-
 const PaginatedTable = ({ rowPerPage, data }) => {
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -18,7 +17,7 @@ const PaginatedTable = ({ rowPerPage, data }) => {
   }, [data]);
 
   const renderTodo = currentTodo.map((el) => (
-    <TableRow row={el} />
+    <TableRow row={el} key={`table_row_${el.id}${el.name}`} />
   ));
 
   const pageNumbers = [];
@@ -30,23 +29,33 @@ const PaginatedTable = ({ rowPerPage, data }) => {
   };
   return (
     <div>
-      <ul>
-        {renderTodo}
-      </ul>
+      <ul>{renderTodo}</ul>
       <PageNumbers
         pageNumbers={pageNumbers}
         currentPage={currentPage}
-        onClick={
-        (number) => handleClick(number)
-}
+        onClick={(number) => handleClick(number)}
       />
     </div>
   );
 };
 
 PaginatedTable.propTypes = {
-  data: PropTypes.arrayOf([
-    PropTypes.objectOf([PropTypes.string, PropTypes.number, PropTypes.array])]),
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      city: PropTypes.string.isRequired,
+      lastMonthSum: PropTypes.number.isRequired,
+      incomesSum: PropTypes.number.isRequired,
+      incomesAvg: PropTypes.number.isRequired,
+      incomes: PropTypes.arrayOf(
+        PropTypes.shape({
+          value: PropTypes.string,
+          date: PropTypes.date,
+        }),
+      ),
+    }),
+  ),
   rowPerPage: PropTypes.number,
 };
 

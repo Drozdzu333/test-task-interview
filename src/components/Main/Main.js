@@ -30,13 +30,11 @@ const Main = () => {
   const [rowPerPage, setRowPerPage] = useState(itemPerPageDefault);
 
   useEffect(() => {
-    // eslint-disable-next-line func-names
     (async function () {
       try {
         const rawData = await fetchData(DATA_URL, INCOMES_URL);
         setData(getParsedData(rawData));
       } catch (e) {
-        // eslint-disable-next-line no-console
         console.error(e);
       }
     }());
@@ -57,7 +55,6 @@ const Main = () => {
     setSortedData(sortData(data, sortBy, sortDirection));
   }, [sortBy, sortDirection, data]);
 
-
   const onChange = (a) => {
     setSearch(a);
   };
@@ -70,12 +67,17 @@ const Main = () => {
   }, [search, sortedData, data]);
   return (
     <main className="table">
-      {!data.length ? <LoadingSpinner /> : (
+      {!data.length ? (
+        <LoadingSpinner />
+      ) : (
         <div className="container">
           <div className="table__header">
             <SearchBar onChange={(a) => onChange(a)} search={search} />
             <SortButtons sortBy={sortBy} onClick={(key) => onClick(key)} />
-            <ItemPerPage rowPerPage={rowPerPage} setRows={(rows) => setRowPerPage(rows)} />
+            <ItemPerPage
+              rowPerPage={rowPerPage}
+              setRows={(rows) => setRowPerPage(rows)}
+            />
           </div>
           <PaginatedTable rowPerPage={rowPerPage} data={filteredData} />
         </div>

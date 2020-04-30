@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-// constants
 import sortBtnsArray from '../../constant/sortBtnsArrayConstant';
 
 // Styles
@@ -15,10 +14,10 @@ const SortButtons = ({ sortBy, onClick }) => {
     <div className="sortBtns">
       {sortBtnsArray.map((el) => (
         <div
+          key={`sortBtns${el.key}`}
           className={`${sortBy === el.key ? 'active' : null} button-outline`}
         >
           <button
-            key={el.key}
             onClick={() => handleOnClick(el.key)}
             type="button"
             id="sortLastMonth"
