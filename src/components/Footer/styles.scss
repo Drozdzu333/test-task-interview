@@ -1,6 +1,9 @@
 @import "../../style/colors";
 
 #footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
   background-color: $header-background;
   display: flex;
   justify-content: space-evenly;
