@@ -28,16 +28,18 @@ const Main = () => {
   const [search, setSearch] = useState('');
   const [filteredData, setFilteredData] = useState([]);
   const [rowPerPage, setRowPerPage] = useState(itemPerPageDefault);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
-    (async function () {
+    async function fetchAPI() {
       try {
         const rawData = await fetchData(DATA_URL, INCOMES_URL);
         setData(getParsedData(rawData));
       } catch (e) {
-        console.error(e);
+        setError(true);
       }
-    }());
+    }
+    fetchAPI();
   }, []);
   useEffect(() => {
     setSortedData(data);
@@ -67,6 +69,7 @@ const Main = () => {
   }, [search, sortedData, data]);
   return (
     <main className="table">
+      {error && <h2 style={{ fontSize: '5rem' }}>błąd połączenia</h2>}
       {!data.length ? (
         <LoadingSpinner />
       ) : (
