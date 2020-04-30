@@ -22,7 +22,7 @@ import ItemPerPage from '../ItemPerPage/ItemPerPage';
 
 const Main = () => {
   const [data, setData] = useState([]);
-  const [sortDirection, setSortDirection] = useState(false);
+  const [sortDirection, setSortDirection] = useState(true);
   const [sortBy, setSortBy] = useState('name');
   const [sortedData, setSortedData] = useState([...data]);
   const [search, setSearch] = useState('');
@@ -48,7 +48,7 @@ const Main = () => {
   const onClick = (key) => {
     if (sortBy !== key) {
       setSortBy(key);
-      setSortDirection(false);
+      setSortDirection(true);
     } else {
       setSortDirection(!sortDirection);
     }
