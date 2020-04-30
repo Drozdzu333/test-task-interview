@@ -29,7 +29,6 @@ const Main = () => {
   const [filteredData, setFilteredData] = useState([]);
   const [rowPerPage, setRowPerPage] = useState(itemPerPageDefault);
 
-  // Fetch and set data object
   useEffect(() => {
     // eslint-disable-next-line func-names
     (async function () {
@@ -46,7 +45,6 @@ const Main = () => {
     setSortedData(data);
   }, [data]);
 
-  // Sort data function
   const onClick = (key) => {
     if (sortBy !== key) {
       setSortBy(key);
@@ -60,7 +58,6 @@ const Main = () => {
   }, [sortBy, sortDirection, data]);
 
 
-  // Search data function
   const onChange = (a) => {
     setSearch(a);
   };

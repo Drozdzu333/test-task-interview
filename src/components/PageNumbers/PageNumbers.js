@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -11,9 +10,24 @@ const PageNumbers = ({ pageNumbers, currentPage, onClick }) => {
     onClick(number);
   };
   return (
-    <ul id="page-numbers">
-      {pageNumbers.map((number) => (<li className={currentPage === number ? 'active' : null} key={`page_number_${number}`} id={number} onClick={() => handleOnClick(number)}>{number}</li>))}
-    </ul>
+    <nav aria-label="Pagination Navigation">
+      <ul role="presentation" id="page-numbers">
+        {pageNumbers.map((number) => (
+          <li
+            className={currentPage === number ? 'active' : null}
+            key={`page_number_${number}`}
+            id={number}
+            onClick={() => handleOnClick(number)}
+
+            role="presentation"
+            aria-current={currentPage === number}
+            aria-label={`Page ${number}`}
+          >
+            {number}
+          </li>
+        ))}
+      </ul>
+    </nav>
   );
 };
 

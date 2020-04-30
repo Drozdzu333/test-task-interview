@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -14,10 +13,14 @@ const ItemPerPage = ({ rowPerPage, setRows }) => {
   };
   return (
     <div className="ItemPerPageWrapper">
-      <label htmlFor="perPage">Items per page</label>
-      <select value={rowPerPage} onChange={onChange} id="perPage">
-        {itemPerPageArr.map((el) => <option value={el}>{el}</option>)}
-      </select>
+      <label htmlFor="perPage">
+        Items per page:
+        {' '}
+        <select value={rowPerPage} onChange={onChange} id="perPage">
+          {itemPerPageArr.map((el) => <option value={el}>{el}</option>)}
+        </select>
+
+      </label>
     </div>
   );
 };

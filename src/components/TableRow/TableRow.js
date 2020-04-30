@@ -42,7 +42,7 @@ TableRow.propTypes = {
 };
 
 TableRow.defaultProps = {
-  // bla: 'test',
+  row: [],
 };
 
 export default TableRow;

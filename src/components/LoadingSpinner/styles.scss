@@ -23,8 +23,6 @@
         overflow: hidden;
         white-space: no-wrap;
         border-right: 0.15em solid $header-background;
-
-        // animation
         animation: typing 3.5s steps(40, end) infinite,
           blinking-cursor 0.5s step-end infinite;
         @keyframes typing {
