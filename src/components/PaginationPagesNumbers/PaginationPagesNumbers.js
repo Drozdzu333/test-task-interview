@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 // Styles
 import './styles.scss';
 
-const PageNumbers = ({ pageNumbers, currentPage, onClick }) => {
+const PaginationPagesNumbers = ({ pageNumbers, currentPage, onClick }) => {
   const handleOnClick = (number) => {
     onClick(number);
   };
@@ -29,16 +29,16 @@ const PageNumbers = ({ pageNumbers, currentPage, onClick }) => {
   );
 };
 
-PageNumbers.propTypes = {
+PaginationPagesNumbers.propTypes = {
   pageNumbers: PropTypes.arrayOf(PropTypes.number),
   currentPage: PropTypes.number,
   onClick: PropTypes.func,
 };
 
-PageNumbers.defaultProps = {
+PaginationPagesNumbers.defaultProps = {
   pageNumbers: 1,
   currentPage: 1,
   onClick: '',
 };
 
-export default PageNumbers;
+export default PaginationPagesNumbers;

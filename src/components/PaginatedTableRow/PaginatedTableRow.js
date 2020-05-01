@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 // Styles
 import './styles.scss';
 
-const TableRow = ({ row }) => (
+const PaginatedTableRow = ({ row }) => (
   <li className="table_row">
     <div className="table_row_element id">
       <h3>ID:</h3>
@@ -33,7 +33,7 @@ const TableRow = ({ row }) => (
   </li>
 );
 
-TableRow.propTypes = {
+PaginatedTableRow.propTypes = {
   row: PropTypes.shape({
     id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
@@ -50,8 +50,8 @@ TableRow.propTypes = {
   }),
 };
 
-TableRow.defaultProps = {
+PaginatedTableRow.defaultProps = {
   row: [],
 };
 
-export default TableRow;
+export default PaginatedTableRow;

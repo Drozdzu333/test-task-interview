@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-import TableRow from '../TableRow/TableRow';
-import PageNumbers from '../PageNumbers/PageNumbers';
+import PaginatedTableRow from '../PaginatedTableRow';
+import PaginationPagesNumbers from '../PaginationPagesNumbers';
 
 const PaginatedTable = ({ rowPerPage, data }) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -17,7 +17,7 @@ const PaginatedTable = ({ rowPerPage, data }) => {
   }, [data]);
 
   const renderTodo = currentTodo.map((el) => (
-    <TableRow row={el} key={`table_row_${el.id}${el.name}`} />
+    <PaginatedTableRow row={el} key={`table_row_${el.id}${el.name}`} />
   ));
 
   const pageNumbers = [];
@@ -30,7 +30,7 @@ const PaginatedTable = ({ rowPerPage, data }) => {
   return (
     <div>
       <ul>{renderTodo}</ul>
-      <PageNumbers
+      <PaginationPagesNumbers
         pageNumbers={pageNumbers}
         currentPage={currentPage}
         onClick={(number) => handleClick(number)}

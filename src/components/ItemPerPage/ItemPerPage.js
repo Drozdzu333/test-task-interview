@@ -2,9 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // Styles
-
 import './styles.scss';
-// Constant
+
 import { itemPerPageArr } from '../../constant/itemPerPageConstant';
 
 const ItemPerPage = ({ rowPerPage, setRows }) => {

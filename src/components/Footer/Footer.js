@@ -2,10 +2,10 @@ import React from 'react';
 
 // styles
 import './styles.scss';
-import SocialMedia from '../SocialMedia/SocialMedia';
 
-// constant
 import { PHONE_NUMBER, EMAIL_URL } from '../../constant/concatConstant';
+
+import SocialMedia from '../SocialMedia/SocialMedia';
 
 const Footer = () => (
   <footer id="footer">

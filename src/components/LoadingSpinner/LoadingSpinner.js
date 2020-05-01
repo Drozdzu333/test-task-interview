@@ -7,7 +7,7 @@ const LoadingSpinner = () => (
   <div id="loadingSpinnerWrapper">
     <div className="loadingSpinner__filter">
       <div className="loadingSpinner__text-holder">
-        <span>Loading</span>
+        <h2>Loading</h2>
       </div>
     </div>
   </div>

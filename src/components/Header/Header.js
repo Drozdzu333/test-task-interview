@@ -3,7 +3,6 @@ import React from 'react';
 // styles
 import './styles.scss';
 
-// components
 import SocialMedia from '../SocialMedia/SocialMedia';
 
 const Header = () => (

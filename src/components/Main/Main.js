@@ -3,17 +3,14 @@ import React, { useEffect, useState } from 'react';
 // styles
 import './styles.scss';
 
-// constants
 import { DATA_URL, INCOMES_URL } from '../../constant/dataAddressConstant';
 import { itemPerPageDefault } from '../../constant/itemPerPageConstant';
 
-// functions
-import fetchData from '../../utility/fetchData';
+import getDataFromAPI from '../../utility/getDataFromAPI';
 import getParsedData from '../../utility/getParsedData';
 import sortData from '../../utility/sortData';
 import getFilteredData from '../../utility/getFilteredData';
 
-// components
 import PaginatedTable from '../PaginatedTable';
 import SearchBar from '../SearchBar';
 import SortButtons from '../SortButtons/SortButtons';
@@ -33,7 +30,7 @@ const Main = () => {
   useEffect(() => {
     async function fetchAPI() {
       try {
-        const rawData = await fetchData(DATA_URL, INCOMES_URL);
+        const rawData = await getDataFromAPI(DATA_URL, INCOMES_URL);
         setData(getParsedData(rawData));
       } catch (e) {
         setError(true);
