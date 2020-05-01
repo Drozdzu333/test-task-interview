@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from 'react';
 
-// styles
-import './styles.scss';
-
 import { DATA_URL, INCOMES_URL } from '../../constant/dataAddressConstant';
 import { itemPerPageDefault } from '../../constant/itemPerPageConstant';
 
 import getDataFromAPI from '../../utility/getDataFromAPI';
 import getParsedData from '../../utility/getParsedData';
-import sortData from '../../utility/sortData';
+import getSortData from '../../utility/getSortData';
 import getFilteredData from '../../utility/getFilteredData';
 
 import PaginatedTable from '../PaginatedTable';
@@ -38,6 +35,7 @@ const Main = () => {
     }
     fetchAPI();
   }, []);
+
   useEffect(() => {
     setSortedData(data);
   }, [data]);
@@ -51,7 +49,7 @@ const Main = () => {
     }
   };
   useEffect(() => {
-    setSortedData(sortData(data, sortBy, sortDirection));
+    setSortedData(getSortData(data, sortBy, sortDirection));
   }, [sortBy, sortDirection, data]);
 
   const onChange = (a) => {

@@ -6,30 +6,25 @@ import PaginationPagesNumbers from '../PaginationPagesNumbers';
 
 const PaginatedTable = ({ rowPerPage, data }) => {
   const [currentPage, setCurrentPage] = useState(1);
-
-  const todoPerPage = rowPerPage;
-  const indexOfLastTodo = currentPage * todoPerPage;
-  const indexOfFirstTodo = indexOfLastTodo - todoPerPage;
-  const currentTodo = data.slice(indexOfFirstTodo, indexOfLastTodo);
-
   useEffect(() => {
     setCurrentPage(1);
   }, [data]);
-
-  const renderTodo = currentTodo.map((el) => (
-    <PaginatedTableRow row={el} key={`table_row_${el.id}${el.name}`} />
-  ));
-
-  const pageNumbers = [];
-  for (let i = 1; i <= Math.ceil(data.length / todoPerPage); i += 1) {
-    pageNumbers.push(i);
-  }
   const handleClick = (number) => {
     setCurrentPage(number);
   };
+
+  const indexOfLastTodo = currentPage * rowPerPage;
+  const indexOfFirstTodo = indexOfLastTodo - rowPerPage;
+  const pageNumbers = [];
+  for (let i = 1; i <= Math.ceil(data.length / rowPerPage); i += 1) {
+    pageNumbers.push(i);
+  }
+
   return (
     <div>
-      <ul>{renderTodo}</ul>
+      <PaginatedTableRow
+        currentTodo={data.slice(indexOfFirstTodo, indexOfLastTodo)}
+      />
       <PaginationPagesNumbers
         pageNumbers={pageNumbers}
         currentPage={currentPage}
