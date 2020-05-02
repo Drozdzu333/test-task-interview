@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { DATA_URL, INCOMES_URL } from '../../constant/dataAddressConstant';
 import { itemPerPageDefault } from '../../constant/itemPerPageConstant';
 
-import getDataFromAPI from '../../utility/getDataFromAPI';
+import getCompaniesDataAPI from '../../utility/getCompaniesData';
 import getParsedData from '../../utility/getParsedData';
 import getSortData from '../../utility/getSortData';
 import getFilteredData from '../../utility/getFilteredData';
@@ -24,21 +24,9 @@ const Main = () => {
   const [rowPerPage, setRowPerPage] = useState(itemPerPageDefault);
   const [error, setError] = useState(false);
 
-  useEffect(() => {
-    async function fetchAPI() {
-      try {
-        const rawData = await getDataFromAPI(DATA_URL, INCOMES_URL);
-        setData(getParsedData(rawData));
-      } catch (e) {
-        setError(true);
-      }
-    }
-    fetchAPI();
-  }, []);
-
-  useEffect(() => {
-    setSortedData(data);
-  }, [data]);
+  const onChange = (a) => {
+    setSearch(a);
+  };
 
   const onClick = (key) => {
     if (sortBy !== key) {
@@ -48,13 +36,26 @@ const Main = () => {
       setSortDirection(!sortDirection);
     }
   };
+
+  useEffect(() => {
+    (async function fetchAPI() {
+      try {
+        const rawData = await getCompaniesDataAPI(DATA_URL, INCOMES_URL);
+        setData(getParsedData(rawData));
+      } catch (e) {
+        setError(true);
+      }
+    }());
+  }, []);
+
+  useEffect(() => {
+    setSortedData(data);
+  }, [data]);
+
   useEffect(() => {
     setSortedData(getSortData(data, sortBy, sortDirection));
   }, [sortBy, sortDirection, data]);
 
-  const onChange = (a) => {
-    setSearch(a);
-  };
   useEffect(() => {
     if (search === '') {
       setFilteredData(sortedData);
@@ -62,6 +63,7 @@ const Main = () => {
       setFilteredData(getFilteredData(sortedData, search));
     }
   }, [search, sortedData, data]);
+
   return (
     <main className="table">
       {error && <h2 style={{ fontSize: '5rem' }}>błąd połączenia</h2>}

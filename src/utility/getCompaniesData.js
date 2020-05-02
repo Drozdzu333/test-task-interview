@@ -1,4 +1,4 @@
-export default async function getDataFromAPI(dataUrl, incomesUrl) {
+export default async function getCompaniesDataAPI(dataUrl, incomesUrl) {
   const customersArray = await fetch(dataUrl)
     .then((response) => response.json())
     .then((resp) => resp);
