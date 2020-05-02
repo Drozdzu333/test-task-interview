@@ -1,12 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
-import { DATA_URL, INCOMES_URL } from '../../constant/dataAddressConstant';
 import { itemPerPageDefault } from '../../constant/itemPerPageConstant';
 
-import getCompaniesDataAPI from '../../utility/getCompaniesData';
-import getParsedData from '../../utility/getParsedData';
-import getSortData from '../../utility/getSortData';
-import getFilteredData from '../../utility/getFilteredData';
+import useCompaniesData from '../../utility/useCompaniesData';
 
 import PaginatedTable from '../PaginatedTable';
 import SearchBar from '../SearchBar';
@@ -15,54 +11,11 @@ import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import ItemPerPage from '../ItemPerPage/ItemPerPage';
 
 const Main = () => {
-  const [data, setData] = useState([]);
-  const [sortDirection, setSortDirection] = useState(true);
-  const [sortBy, setSortBy] = useState('name');
-  const [sortedData, setSortedData] = useState([...data]);
-  const [search, setSearch] = useState('');
-  const [filteredData, setFilteredData] = useState([]);
+  const {
+    data, sort, search, onChange, onClick, error,
+  } = useCompaniesData();
+
   const [rowPerPage, setRowPerPage] = useState(itemPerPageDefault);
-  const [error, setError] = useState(false);
-
-  const onChange = (a) => {
-    setSearch(a);
-  };
-
-  const onClick = (key) => {
-    if (sortBy !== key) {
-      setSortBy(key);
-      setSortDirection(true);
-    } else {
-      setSortDirection(!sortDirection);
-    }
-  };
-
-  useEffect(() => {
-    (async function fetchAPI() {
-      try {
-        const rawData = await getCompaniesDataAPI(DATA_URL, INCOMES_URL);
-        setData(getParsedData(rawData));
-      } catch (e) {
-        setError(true);
-      }
-    }());
-  }, []);
-
-  useEffect(() => {
-    setSortedData(data);
-  }, [data]);
-
-  useEffect(() => {
-    setSortedData(getSortData(data, sortBy, sortDirection));
-  }, [sortBy, sortDirection, data]);
-
-  useEffect(() => {
-    if (search === '') {
-      setFilteredData(sortedData);
-    } else {
-      setFilteredData(getFilteredData(sortedData, search));
-    }
-  }, [search, sortedData, data]);
 
   return (
     <main className="table">
@@ -73,13 +26,13 @@ const Main = () => {
         <div className="container">
           <div className="table__header">
             <SearchBar onChange={(a) => onChange(a)} search={search} />
-            <SortButtons sortBy={sortBy} onClick={(key) => onClick(key)} />
+            <SortButtons sortBy={sort.sortBy} onClick={(key) => onClick(key)} />
             <ItemPerPage
               rowPerPage={rowPerPage}
               setRows={(rows) => setRowPerPage(rows)}
             />
           </div>
-          <PaginatedTable rowPerPage={rowPerPage} data={filteredData} />
+          <PaginatedTable rowPerPage={rowPerPage} data={data} />
         </div>
       )}
     </main>
